@@ -1,18 +1,10 @@
 import React from 'react'
-import { Container, Form } from './components'
-import useForm from './hooks/useForm'
+import { Home } from './components'
 
 function App() {
-
-  // eslint-disable-next-line
-  const [form, handleChange] = useForm({ concept: '', amount: '', date: '', type: '' })
-
   return (
     <div>
-      Hola
-      <Container>
-        <Form />
-      </Container>
+      <Home />
     </div>
   )
 }
