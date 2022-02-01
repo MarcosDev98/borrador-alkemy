@@ -1,55 +1,16 @@
 import React from 'react'
 import './Form.css'
-import { Input } from '../../components'
-import useForm from '../../hooks/useForm'
+import { Input } from '../'
 
-const Form = ({ submit }) => {
-
-  const [form, handleChange, reset] = useForm({
-    concept: '',
-    amount: '',
-    date: '',
-    type: '',
-  })
-
-  const handleSubmit = (e) => {
-    e.preventDefault(submit)
-    submit(form)
-    reset
-  }
-
+const Form = () => {
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <Input 
-          label='Concepto'
-          name='Concept'
-          value={form.concept}
-          onChange={handleChange}
-        />
-
-        <Input
-          label='Monto'
-          name='amount'
-          value={form.amount}
-          onChange={handleChange}
-        />
-
-        <Input
-          label='Fecha'
-          name='date'
-          value={form.date}
-          onChange={handleChange}
-        />
-
-        <Input
-          label='Tipo'
-          name='type'
-          value={form.type}
-          onChange={handleChange}
-        />
-      </form>
-    </div>
+    <form>
+      <Input 
+        label='Concepto'
+        name='Concepto'
+        
+      />
+    </form>
   )
 }
 
