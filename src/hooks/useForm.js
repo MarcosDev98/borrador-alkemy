@@ -10,7 +10,11 @@ const useForm = (initial) => {
     })
   }
 
-  return [form, handleChange]
+  const reset = () => {
+    setForm(initial)
+  }
+
+  return [form, handleChange, reset] 
 
 }
 
