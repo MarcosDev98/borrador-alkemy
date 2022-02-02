@@ -1,10 +1,13 @@
 import React from 'react'
-import { Home } from './components'
+import { Container, Form } from './components'
+
 
 function App() {
   return (
     <div>
-      <Home />
+      <Container>
+        <Form />
+      </Container>
     </div>
   )
 }
