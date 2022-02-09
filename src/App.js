@@ -13,12 +13,18 @@ function App() {
     type: '',
   })
 
-  const submit = (e) => {
+  const  submit = async (e) => {
     e.preventDefault()
     setTransaction([
       ...transactions,
       form,
     ])
+
+    const response = await fetch('http://localhost:5005/transaction/add', form)
+
+    const data = await response.json()
+    console.log(data)
+
     reset()
   }
 
