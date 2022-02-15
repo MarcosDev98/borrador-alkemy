@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const List = ({ transactions }) => {
   return (
@@ -6,7 +6,7 @@ const List = ({ transactions }) => {
       {transactions.map(x => 
         <li key={x.concept}>{`${x.concept} ${x.amount} ${x.date} ${x.type}`}</li>)}
     </ul>
-  )
-}
+  );
+};
 
-export default List
+export default List;

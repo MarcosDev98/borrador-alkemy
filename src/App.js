@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
-import { Button, Card, Container, Input, List } from './components'
-import useForm from './hooks/useForm'
+import React, { useState } from 'react';
+import { Button, Card, Container, Input, List } from './components';
+import useForm from './hooks/useForm';
 
 
 function App() {
 
-  const [transactions, setTransaction] = useState([])
+  const [transactions, setTransaction] = useState([]);
   const [form, handleChange, reset] = useForm({
     concept: '',
     amount: '',
     date: '',
     type: '',
-  })
+  });
 
   const  submit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setTransaction([
       ...transactions,
       form,
-    ])
+    ]);
 
-    const response = await fetch('http://localhost:5005/transaction/add', form)
+    const response = await fetch('http://localhost:5005/transaction/add', form);
 
-    const data = await response.json()
-    console.log(data)
+    const data = await response.json();
+    console.log(data);
 
-    reset()
-  }
+    reset();
+  };
 
 
   return (
@@ -49,7 +49,7 @@ function App() {
         </Card>
       </Container>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

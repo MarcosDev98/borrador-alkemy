@@ -1,5 +1,5 @@
-import React from 'react'
-import './Input.css'
+import React from 'react';
+import './Input.css';
 
 const Input = ({ label, ...props }) => {
   return (
@@ -7,7 +7,7 @@ const Input = ({ label, ...props }) => {
       <label>{label}</label>  
       <input autoComplete='off' {...props} />
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
