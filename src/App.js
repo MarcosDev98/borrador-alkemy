@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Button, Card, Container, Input, List } from './components';
+import React, { useState, useEffect } from 'react';
+import { Button, Card, Container, Input, List, Select } from './components';
 import useForm from './hooks/useForm';
 
 
 function App() {
 
   const [transactions, setTransaction] = useState([]);
+  const [types, setTypes] = useState([]);
   const [form, handleChange, reset] = useForm({
     concept: '',
     amount: '',
@@ -28,7 +29,26 @@ function App() {
     reset();
   };
 
+  const getTransactions = async () => {
+    const response = await fetch('http://localhost:5005/transaction/all');
+    const data = await response.json();
+    setTransaction(data);
+    console.log(data);
+  };
 
+  const getTypes = async () => {
+    const response = await fetch('http://localhost:5005/types/all');
+    const data = await response.json();
+    setTypes(data);
+
+  };
+
+  useEffect(() => {
+    getTransactions();
+    getTypes();
+  },[]);
+
+  console.log(types);
   return (
     <div style={{ marginTop: '5%' }}>
       <Container>
@@ -38,14 +58,14 @@ function App() {
               <Input label='Concepto' name='concept' value={form.concept} onChange={handleChange} />
               <Input label='Monto' name='amount' value={form.amount} onChange={handleChange} />
               <Input label='Fecha' name='date' value={form.date} onChange={handleChange} />
-              <Input label='Tipo' name='type' value={form.type} onChange={handleChange} />
+              <Select label='Tipo' name='type' value={form.type} types={types} onChange={handleChange} />
         
               <Button>Enviar</Button>
             </form>
           </div>
         </Card>
         <Card>
-          <List transactions={transactions}/>
+          <List transactions={transactions} />
         </Card>
       </Container>
     </div>
