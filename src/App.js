@@ -37,7 +37,7 @@ function App() {
   };
 
   const getTypes = async () => {
-    const response = await fetch('http://localhost:5005/types/all');
+    const response = await fetch('http://localhost:5005/type/all');
     const data = await response.json();
     setTypes(data);
 
@@ -50,8 +50,11 @@ function App() {
 
   console.log(types);
   return (
-    <div style={{ marginTop: '5%' }}>
+    <div style={{ marginTop: '5%', marginBottom: '5%' }}>
       <Container>
+        <Card>
+          <List transactions={transactions} />
+        </Card>
         <Card>
           <div style={{ padding: 20 }}>
             <form onSubmit={submit}>
@@ -63,9 +66,6 @@ function App() {
               <Button>Enviar</Button>
             </form>
           </div>
-        </Card>
-        <Card>
-          <List transactions={transactions} />
         </Card>
       </Container>
     </div>
