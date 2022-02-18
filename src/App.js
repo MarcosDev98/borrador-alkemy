@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Button, Card, Container, Input, List, Login, Select } from './components';
 import useForm from './hooks/useForm';
 
@@ -51,24 +52,26 @@ function App() {
   console.log(types);
   return (
     <div style={{ marginTop: '5%', marginBottom: '5%' }}>
-      <Container>
-        <Login />
-        <Card>
-          <List transactions={transactions} />
-        </Card>
-        <Card>
-          <div style={{ padding: 20 }}>
-            <form onSubmit={submit}>
-              <Input label='Concepto' name='concept' value={form.concept} onChange={handleChange} />
-              <Input label='Monto' name='amount' value={form.amount} onChange={handleChange} />
-              <Input label='Fecha' name='date' value={form.date} onChange={handleChange} />
-              <Select label='Tipo' name='type' value={form.type} types={types} onChange={handleChange} />
+      <Routes>
+        <Container>
+          <Login />
+          <Card>
+            <List transactions={transactions} />
+          </Card>
+          <Card>
+            <div style={{ padding: 20 }}>
+              <form onSubmit={submit}>
+                <Input label='Concepto' name='concept' value={form.concept} onChange={handleChange} />
+                <Input label='Monto' name='amount' value={form.amount} onChange={handleChange} />
+                <Input label='Fecha' name='date' value={form.date} onChange={handleChange} />
+                <Select label='Tipo' name='type' value={form.type} types={types} onChange={handleChange} />
         
-              <Button>Enviar</Button>
-            </form>
-          </div>
-        </Card>
-      </Container>
+                <Button>Enviar</Button>
+              </form>
+            </div>
+          </Card>
+        </Container>
+      </Routes>
     </div>
   );
 }

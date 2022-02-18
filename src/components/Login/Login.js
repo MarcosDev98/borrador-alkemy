@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, SignIn, SignUp } from '../';
 
 
 const Login = () => {
 
-  const showSignIn = () => <SignIn />;
 
-  const showSignUp = () => <SignUp />;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div>
       <Card>
-        <button onClick={showSignUp} >Registrarme</button>
-        <button onClick={showSignIn} >Ingresar</button>
+        <form onSubmit={handleSubmit}>
+
+        </form>
       </Card>
     </div>
   );
