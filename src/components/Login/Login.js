@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Card, SignIn, SignUp } from '../';
+import React from 'react';
+import { Card, Input } from '../';
 
 
 const Login = () => {
 
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +15,9 @@ const Login = () => {
     <div>
       <Card>
         <form onSubmit={handleSubmit}>
-
+          <Input label='Usuario/Email' />
+          <Input label='Contraseña' />
+          <button>Ingresar</button>
         </form>
       </Card>
     </div>
