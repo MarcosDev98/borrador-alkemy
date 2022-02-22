@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, List, Input, Select, Button } from '../';
 import useForm from '../../hooks/useForm';
 
+
 const Home = () => {
 
   const [transactions, setTransaction] = useState([]);
@@ -20,7 +21,7 @@ const Home = () => {
       form
     ]);
 
-    const response = await fetch('http://localhost:5005/transaction/add', form);
+    const response = await fetch('http://localhost:5005/api/transactions/create', form);
 
     const data = await response.json();
     console.log(data);
@@ -30,13 +31,14 @@ const Home = () => {
 
 
   const getTransactions = async () => {
-    const response = await fetch('http://localhost:5005/transaction/all');
+    const response = await fetch('http://localhost:5005/api/transactions/');
     const data = await response.json();
     setTransaction(data);
   };
 
+
   const getTypes = async () => {
-    const response = await fetch('http://localhost:5005/type/all');
+    const response = await fetch('http://localhost:5005/api/types/');
     const data = await response.json();
     setTypes(data);
   };

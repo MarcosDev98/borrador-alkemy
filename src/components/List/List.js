@@ -14,6 +14,8 @@ const List = ({ transactions }) => {
     const totalExpenses = expenses.map(x => x.amount);
     let result = totalIncomes - totalExpenses;
     return result;
+
+    
   };
 
   return (
