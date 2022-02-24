@@ -2,7 +2,6 @@ import React from 'react';
 import './Select.css';
 
 const Select = ({ label, types, ...props }) => {
-  console.log('types:', types);
   return (
     <div className='field'>
       <label>{label}</label>  

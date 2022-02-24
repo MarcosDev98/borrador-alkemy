@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Card, List, Input, Select, Button } from '../';
 import useForm from '../../hooks/useForm';
-
+import { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes } from '../../services/ajax';
 
 const Home = () => {
-
+  
+  
   const [transactions, setTransaction] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [types, setTypes] = useState([]);
   const [form, handleChange, reset] = useForm({
     concept: '',
@@ -14,6 +16,7 @@ const Home = () => {
     type: '',
   });
 
+
   const submit = async (e) => {
     e.preventDefault();
     setTransaction([
@@ -21,26 +24,62 @@ const Home = () => {
       form
     ]);
 
-    const response = await fetch('http://localhost:5005/api/transactions/create', form);
+    ajaxCreateTransaction(form);
 
-    const data = await response.json();
-    console.log(data);
 
     reset();
   };
 
 
-  const getTransactions = async () => {
-    const response = await fetch('http://localhost:5005/api/transactions/');
-    const data = await response.json();
-    setTransaction(data);
+  const getTransactions =  () => {
+    ajaxGetTransactions()
+      .then((data) => {
+
+        data.map(x => {
+          console.log('x', x);
+          form.concept = x.concept;
+          form.amount = x.amount;
+          form.date = x.date;
+          form.type = x.id_type_transaction;
+
+          
+          setTransaction([
+            ...transactions, 
+            form
+          ]);
+
+          reset();
+        });
+
+        console.log('transactions', transactions);
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+         
+      
   };
 
 
-  const getTypes = async () => {
-    const response = await fetch('http://localhost:5005/api/types/');
-    const data = await response.json();
-    setTypes(data);
+  const getTypes = () => {
+    ajaxGetTypes()
+      .then((data) => {
+
+        data.map(x => {
+
+          setTypes([...types, x.id, x.type]);
+
+        }
+        );
+        
+
+        console.log('types', types);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    
   };
 
   useEffect(() => {
