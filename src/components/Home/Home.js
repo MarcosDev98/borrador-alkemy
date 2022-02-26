@@ -35,23 +35,7 @@ const Home = () => {
     ajaxGetTransactions()
       .then((data) => {
 
-        data.map(x => {
-          console.log('x', x);
-          form.concept = x.concept;
-          form.amount = x.amount;
-          form.date = x.date;
-          form.type = x.id_type_transaction;
-
-          
-          setTransaction([
-            ...transactions, 
-            form
-          ]);
-
-          reset();
-        });
-
-        console.log('transactions', transactions);
+        setTransaction(data);
 
       })
       .catch((error) => {
@@ -66,15 +50,7 @@ const Home = () => {
     ajaxGetTypes()
       .then((data) => {
 
-        data.map(x => {
-
-          setTypes([...types, x.id, x.type]);
-
-        }
-        );
-        
-
-        console.log('types', types);
+        setTypes(data);
       })
       .catch((error) => {
         console.error(error);
