@@ -10,11 +10,15 @@ const List = ({ transactions }) => {
   const expenses = transactions.filter(x => x.id_type_transaction === 2);
 
   const balance = () => {
-    const totalIncomes = income.map(x => x.amount);
-    const totalExpenses = expenses.map(x => x.amount);
-    let result = totalIncomes - totalExpenses;
-    return result;
 
+    let resultado = 0;
+    
+    income.map((x) => resultado += x.amount);
+
+    expenses.map((x) => resultado -= x.amount);
+
+
+    return resultado;
     
   };
 

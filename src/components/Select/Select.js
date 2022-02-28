@@ -3,7 +3,6 @@ import './Select.css';
 
 const Select = ({ label, types, ...props }) => {
 
-  console.log(types);
   return (
     <div className='field'>
       <label>{label}</label>  
