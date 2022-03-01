@@ -11,7 +11,7 @@ function App() {
     <div style={{ marginTop: '5%', marginBottom: '5%' }}>
       <Container>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/:user' element={<Home />} />
           <Route path='/login' element={<Login />} />
         </Routes>
       </Container>

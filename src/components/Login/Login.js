@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Input } from '../';
-import loginService from '../../services/login';
 import useForm from '../../hooks/useForm';
+import { ajaxLogin } from '../../services/ajax';
 
 const Login = () => {
 
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   // const [errorMessage, setErrorMessage] = useState(null);
   const [user, setUser] = useState(null);
   const [form, handleChange, reset] = useForm({
@@ -18,13 +18,21 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    ajaxLogin(form)
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => console.error('login_error', error));
     
-    const user = await loginService.login({ form });
-    console.log(user);
-    setUser(user);
     reset();
     
   };
+
+  if (user) {
+    console.log(user);
+    // eslint-disable-next-line quotes
+    navigate(`/${JSON.stringify(user)}`);
+  }
 
   return (
     <div>
