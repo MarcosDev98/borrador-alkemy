@@ -2,29 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { Card, List, Input, Select, Button } from '../';
 import useForm from '../../hooks/useForm';
 import { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes } from '../../services/ajax';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   
-  
+  const { state } = useLocation();
+
   const [transactions, setTransaction] = useState([]);
   // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState(null);
   const [types, setTypes] = useState([]);
   const [form, handleChange, reset] = useForm({
     concept: '',
     amount: '',
     date: '',
     id_type_transaction: '',
+    user_id: ''
   });
 
-  const { user } = useParams();
-  const { id, name, token } = user;
 
-  console.log('from home', id, name, token);
-
-  const submit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
     ajaxCreateTransaction(form)
       .then((data) => {
         setTransaction([...transactions, form]);
@@ -66,6 +66,11 @@ const Home = () => {
   useEffect(() => {
     getTransactions();
     getTypes();
+
+    if (state) {
+      setUser(state);
+    }
+
   }, []);
 
   return (
@@ -74,7 +79,7 @@ const Home = () => {
         <List transactions={transactions} />
       </Card><Card>
         <div style={{ padding: 20 }}>
-          <form onSubmit={submit}>
+          <form onSubmit={handleSubmit}>
             <Input label='Concepto' name='concept' value={form.concept} onChange={handleChange} />
             <Input label='Monto' name='amount' value={form.amount} onChange={handleChange} />
             <Input label='Fecha' name='date' value={form.date} onChange={handleChange} />

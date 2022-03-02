@@ -8,6 +8,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   // const [errorMessage, setErrorMessage] = useState(null);
+  // de hecho ni siquiera tiene sentido tener un estado para el usuario en este componente.
   const [user, setUser] = useState(null);
   const [form, handleChange, reset] = useForm({
     username: '',
@@ -28,10 +29,11 @@ const Login = () => {
     
   };
 
+  
+
   if (user) {
-    console.log(user);
-    // eslint-disable-next-line quotes
-    navigate(`/${JSON.stringify(user)}`);
+    navigate('/', { state: user });
+
   }
 
   return (
