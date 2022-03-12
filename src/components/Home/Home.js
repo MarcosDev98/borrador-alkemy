@@ -69,6 +69,7 @@ const Home = () => {
 
     if (state) {
       setUser(state);
+      console.log(user);
     }
 
   }, []);
