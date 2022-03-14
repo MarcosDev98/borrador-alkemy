@@ -8,8 +8,7 @@
 
 function ajaxCreateTransaction (new_transaction, token) {
 
-  console.log(new_transaction);
-
+  
   return new Promise(function(resolve, reject) {
     const http = new XMLHttpRequest();
   

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, List, Input, Select, Button } from '../';
 import useForm from '../../hooks/useForm';
 import { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes } from '../../services/ajax';
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   
-  const { state } = useLocation();
+  const navigate = useNavigate();
 
   const [transactions, setTransaction] = useState([]);
   // eslint-disable-next-line no-unused-vars
@@ -16,8 +16,7 @@ const Home = () => {
     concept: '',
     amount: '',
     date: '',
-    id_type_transaction: '',
-    user_id: ''
+    id_type_transaction: ''
   });
 
 
@@ -25,7 +24,7 @@ const Home = () => {
     e.preventDefault();
 
     
-    ajaxCreateTransaction(form)
+    ajaxCreateTransaction(form, user.token)
       .then((data) => {
         setTransaction([...transactions, form]);
         console.log('create_transaction_data', data);
@@ -50,7 +49,6 @@ const Home = () => {
       
   };
 
-
   const getTypes = () => {
     ajaxGetTypes()
       .then((data) => {
@@ -67,8 +65,16 @@ const Home = () => {
     getTransactions();
     getTypes();
 
-    if (state) {
-      setUser(state);
+    
+
+  }, []);
+
+  useEffect(() => {
+    const loggedUser = window.sessionStorage.getItem('loggedUser');
+
+    if (loggedUser) {
+      const user = JSON.parse(loggedUser);
+      setUser(user);
       console.log(user);
     }
 
@@ -76,6 +82,7 @@ const Home = () => {
 
   return (
     <>
+      {user ? <h1>Hola {user.firstname}</h1> : navigate('/login') }
       <Card>
         <List transactions={transactions} />
       </Card><Card>
