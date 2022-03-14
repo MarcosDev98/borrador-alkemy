@@ -7,8 +7,6 @@ import { ajaxLogin } from '../../services/ajax';
 const Login = () => {
 
   const navigate = useNavigate();
-  // const [errorMessage, setErrorMessage] = useState(null);
-  // de hecho ni siquiera tiene sentido tener un estado para el usuario en este componente.
   const [user, setUser] = useState(null);
   const [form, handleChange, reset] = useForm({
     username: '',
@@ -32,7 +30,8 @@ const Login = () => {
   
 
   if (user) {
-    navigate('/', { state: user });
+    window.sessionStorage.setItem('loggedUser', JSON.stringify(user));
+    navigate('/');
 
   }
 
