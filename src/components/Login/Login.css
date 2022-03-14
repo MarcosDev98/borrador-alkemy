@@ -1,0 +1,18 @@
+
+.body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightcoral;
+
+
+}
+
+.container {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 5px 10px rgba(0,0,0, 0.1);
+}
