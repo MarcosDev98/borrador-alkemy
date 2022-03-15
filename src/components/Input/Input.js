@@ -1,12 +1,13 @@
 import React from 'react';
-import './Input.css';
+// import './Input.css';
+import { TextInput, Label, Field } from './styles.js';
 
 const Input = ({ label, ...props }) => {
   return (
-    <div className='field'>
-      <label>{label}</label>  
-      <input autoComplete='off' {...props} />
-    </div>
+    <Field>
+      <Label>{label}</Label>  
+      <TextInput {...props} />
+    </Field>
   );
 };
 
