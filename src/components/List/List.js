@@ -13,6 +13,7 @@ const List = ({ transactions }) => {
 
     let resultado = 0;
     
+
     income.map((x) => resultado += x.amount);
 
     expenses.map((x) => resultado -= x.amount);
