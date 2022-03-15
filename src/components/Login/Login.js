@@ -60,8 +60,8 @@ const Login = () => {
         <div className='forms'>
 
           <form onSubmit={handleLogin}>
-            <Input label='Usuario' name='username' value={loginForm.username} onChange={loginHandler} />
-            <Input label='Contraseña' name='password' value={loginForm.password} onChange={loginHandler} />
+            <Input label='Usuario' autoComplete={true} name='username' value={loginForm.username} onChange={loginHandler} />
+            <Input label='Contraseña' type='password' name='password' value={loginForm.password} onChange={loginHandler} />
             <Button>Ingresar</Button>
           </form>
           <form onSubmit={handleSignUp}>
