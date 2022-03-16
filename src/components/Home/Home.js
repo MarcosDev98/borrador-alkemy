@@ -28,6 +28,7 @@ const Home = () => {
       .then((data) => {
         setTransaction([...transactions, form]);
         console.log('create_transaction_data', data);
+        getTransactions();
       })
       .catch((error) => console.error('create_transaction_error', error));
 
@@ -85,7 +86,8 @@ const Home = () => {
       {user ? <h1>Hola {user.firstname}</h1> : navigate('/login') }
       <Card>
         <List transactions={transactions} />
-      </Card><Card>
+      </Card>
+      <Card>
         <div style={{ padding: 20 }}>
           <form onSubmit={handleSubmit}>
             <Input label='Concepto' name='concept' value={form.concept} onChange={handleChange} />

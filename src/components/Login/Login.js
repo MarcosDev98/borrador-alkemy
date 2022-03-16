@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Input, Button } from '../';
+// eslint-disable-next-line no-unused-vars
+import { Button, Input } from '../';
 import useForm from '../../hooks/useForm';
 import { ajaxLogin, ajaxCreateUser } from '../../services/ajax';
-import './Login.css';
+// eslint-disable-next-line no-unused-vars
+import { Body, Container, Form, Forms, InputField, StyledInput, Title } from './styles';
+
 
 const Login = () => {
 
@@ -14,6 +17,7 @@ const Login = () => {
     password: '',
   });
 
+  // eslint-disable-next-line no-unused-vars
   const [signUpForm, signUpHandler, resetSignUp] = useForm({
     firstname: '',
     lastname: '',
@@ -36,6 +40,7 @@ const Login = () => {
   };
 
   
+  // eslint-disable-next-line no-unused-vars
   const handleSignUp = (e) => {
     e.preventDefault();
 
@@ -55,26 +60,30 @@ const Login = () => {
   }
 
   return (
-    <div className='body'>
-      <div className='container'>
-        <div className='forms'>
-
-          <form onSubmit={handleLogin}>
-            <Input label='Usuario' autoComplete={true} name='username' value={loginForm.username} onChange={loginHandler} />
-            <Input label='Contraseña' type='password' name='password' value={loginForm.password} onChange={loginHandler} />
+    <Body>
+      <Container>
+        <Forms>
+          <Title>Login</Title>
+          <Form onSubmit={handleLogin}>
+            <InputField>
+              <StyledInput label='Usuario' name='username' value={loginForm.username} onChange={loginHandler} />
+            </InputField>
+            <InputField>
+              <StyledInput label='Contraseña' type='password' name='password' value={loginForm.password} onChange={loginHandler} />
+            </InputField>
             <Button>Ingresar</Button>
-          </form>
-          <form onSubmit={handleSignUp}>
+          </Form>
+          {/* <Form onSubmit={handleSignUp}>
             <Input label='Nombre' name='firstname' value={signUpForm.firstname} onChange={signUpHandler} />
             <Input label='Apellido' name='lastname' value={signUpForm.lastname} onChange={signUpHandler} />
             <Input label='Email' name='email' value={signUpForm.email} onChange={signUpHandler} />
             <Input label='Usuario' name='username' value={signUpForm.username} onChange={signUpHandler} />
             <Input label='Contraseña' name='password' value={signUpForm.password} onChange={signUpHandler} type='password' />
             <Button>Registrar</Button>
-          </form>
-        </div>
-      </div>
-    </div>
+          </Form> */}
+        </Forms>
+      </Container>
+    </Body>
   );
 };
 

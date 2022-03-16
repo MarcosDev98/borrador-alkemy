@@ -1,14 +1,19 @@
 import styled from 'styled-components';
+import { COLORS, FONTSIZES } from '../../utils/cssVariables.js';
 
-export const TextInput = styled.input.attrs( props => ({
+const { input_border, input_outline } = COLORS;
+const { input } = FONTSIZES;
+
+
+export const MyInput = styled.input.attrs( props => ({
   type: props.type || 'text',
   autoComplete: props.autoComplete || 'off',
 }))`
   background-color: #fff;
   border-radius: 4px;
-  border: 1px solid rgba(34, 34, 34, 0.15);
+  border: 1px solid ${input_border};
   box-sizing: border-box;
-  outline-color: rgba(0, 132, 255, 0.733);
+  outline-color: ${input_outline};
   outline: 1px solid unset;
   padding: 0.715em 1.07em;
   width: 75%;
@@ -22,6 +27,6 @@ export const Label = styled.label`
 `;
 
 export const Field = styled.div`
-  font-size: 14px;
+  font-size: ${input};
   margin-bottom: 1em;
 `;

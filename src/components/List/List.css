@@ -7,7 +7,7 @@
 .balance {
   margin: 5% auto 0 auto;
   text-align: center;
-  background-color: #2185d0;
+  background-color: #64b6f5;
 }
 
 .balance h2 {
@@ -16,7 +16,7 @@
 
 .list-container .incomes {
   text-align: center;
-  background-color: rgba(0,255,0, 0.7);
+  background-color: var(--incomes);
 }
 
 .list-container .expenses {

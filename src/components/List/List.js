@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card } from '../';
-import './List.css';
+import { Balance, CardList, Expenses, Incomes, ListContainer } from './styles';
+
 
 const List = ({ transactions }) => {
 
@@ -25,32 +25,32 @@ const List = ({ transactions }) => {
 
   return (
     <div>
-      <div className='balance'>
+      <Balance>
         <h2>Balance</h2>
         <h3>{balance()}</h3>
-      </div>
-      <div className='list-container'>
-        <Card>
-          <div className='incomes'>
+      </Balance>
+      <ListContainer>
+        <CardList>
+          <Incomes>
             <h2>Ingresos</h2>
             <ul>
               {income.map(x => 
                 <li key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</li>
               )}
             </ul>
-          </div>
-        </Card>
-        <Card>
-          <div className='expenses'> 
+          </Incomes>
+        </CardList>
+        <CardList>
+          <Expenses>
             <h2>Egresos</h2>
             <ul>
               {expenses.map(x => 
                 <li key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</li>
               )}
             </ul>
-          </div>
-        </Card>
-      </div>
+          </Expenses>
+        </CardList>
+      </ListContainer>
     </div>
   );
 };

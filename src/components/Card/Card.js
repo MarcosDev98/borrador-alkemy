@@ -1,11 +1,12 @@
 import React from 'react';
-import './Card.css';
+import { MyCard } from './styles';
+
 
 const Card = ({ children }) =>  {
   return (
-    <div className='card'>
+    <MyCard>
       {children}
-    </div>
+    </MyCard>
   );
 };
 
