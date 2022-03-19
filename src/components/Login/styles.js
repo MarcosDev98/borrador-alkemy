@@ -25,7 +25,10 @@ export const Container = styled(MyContainer)`
 `;
 
 export const Forms = styled.div`
+`;
 
+export const Form = styled.form`
+  padding: 30px;
 `;
 
 export const Title = styled.span`
@@ -50,9 +53,6 @@ export const FormContainer = styled.div`
   padding: 30px;
 `;
 
-export const Form = styled.form`
-  padding: 30px;
-`;
 
 export const InputField = styled.div`
   height: 50px;
