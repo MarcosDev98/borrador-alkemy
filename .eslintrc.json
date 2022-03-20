@@ -9,6 +9,7 @@
     ],
     "parserOptions": {
         "ecmaFeatures": {
+            "js": true,
             "jsx": true
         },
         "ecmaVersion": "latest",
