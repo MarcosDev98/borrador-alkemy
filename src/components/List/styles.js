@@ -23,6 +23,9 @@ export const Incomes = styled.div`
   background-color: ${list_incomes};
 `;
 
+export const Item = styled.li`
+  list-style: none;
+`;
 
 
 export const Expenses = styled.div`

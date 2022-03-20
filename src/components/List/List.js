@@ -1,6 +1,7 @@
 import React from 'react';
-import { Balance, CardList, Expenses, Incomes, ListContainer } from './styles';
-
+// eslint-disable-next-line no-unused-vars
+import { Balance, CardList, Expenses, Incomes, Item, ListContainer } from './styles.js';
+import { Table } from '../';
 
 const List = ({ transactions }) => {
 
@@ -9,6 +10,7 @@ const List = ({ transactions }) => {
   const income = transactions.filter(x => x.id_type_transaction === 1);
   const expenses = transactions.filter(x => x.id_type_transaction === 2);
 
+  // eslint-disable-next-line no-unused-vars
   const balance = () => {
 
     let resultado = 0;
@@ -24,35 +26,41 @@ const List = ({ transactions }) => {
   };
 
   return (
-    <div>
-      <Balance>
-        <h2>Balance</h2>
-        <h3>{balance()}</h3>
-      </Balance>
-      <ListContainer>
-        <CardList>
-          <Incomes>
-            <h2>Ingresos</h2>
-            <ul>
-              {income.map(x => 
-                <li key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</li>
-              )}
-            </ul>
-          </Incomes>
-        </CardList>
-        <CardList>
-          <Expenses>
-            <h2>Egresos</h2>
-            <ul>
-              {expenses.map(x => 
-                <li key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</li>
-              )}
-            </ul>
-          </Expenses>
-        </CardList>
-      </ListContainer>
-    </div>
+    <Table>
+
+    </Table>
   );
+
+  // return (
+  //   <div>
+  //     <Balance>
+  //       <h2>Balance</h2>
+  //       <h3>{balance()}</h3>
+  //     </Balance>
+  //     <ListContainer>
+  //       <CardList>
+  //         <Incomes>
+  //           <h2>Ingresos</h2>
+  //           <ul>
+  //             {income.map(x => 
+  //               <Item key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</Item>
+  //             )}
+  //           </ul>
+  //         </Incomes>
+  //       </CardList>
+  //       <CardList>
+  //         <Expenses>
+  //           <h2>Egresos</h2>
+  //           <ul>
+  //             {expenses.map(x => 
+  //               <Item key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</Item>
+  //             )}
+  //           </ul>
+  //         </Expenses>
+  //       </CardList>
+  //     </ListContainer>
+  //   </div>
+  // );
 };
 
 export default List;
