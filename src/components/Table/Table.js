@@ -2,7 +2,12 @@ import React from 'react';
 import { TableContainer, StyledTable, TableBody, TableHead, TR, TH, TD } from './styles.js';
 
 
-const Table = () => {
+const Table = ({ transactions }) => {
+
+
+  // const income = transactions.filter(x => x.id_type_transaction === 1);
+  // const expenses = transactions.filter(x => x.id_type_transaction === 2);
+
   return(
     <TableContainer>
       <StyledTable>
@@ -19,12 +24,10 @@ const Table = () => {
 
 
         <TableBody>
-          <TR>
-            <TD>Comida</TD>
-            <TD>5000</TD>
-            <TD>Ayer</TD>
-            <TD>comida</TD>
-          </TR>
+          {transactions.map((x, i) => 
+            <TR key={i}>
+              <TD bg={x.id_type_transaction === 1 ? 'green' : 'red' } key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</TD>
+            </TR>)}
         </TableBody>
 
       </StyledTable>
