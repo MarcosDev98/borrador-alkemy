@@ -1,4 +1,6 @@
 import React from 'react';
+import { ReadOnlyRow, EditableRow } from '../';
+// eslint-disable-next-line no-unused-vars
 import { TableContainer, StyledTable, TableBody, TableHead, TR, TH, TD } from './styles.js';
 
 
@@ -11,30 +13,31 @@ const Table = ({ transactions }) => {
 
   return(
     <TableContainer>
-      <StyledTable>
+      <form>
+        <StyledTable>
 
-        <TableHead>
-          <TR>
-            <TH>Concepto</TH>
-            <TH>Monto</TH>
-            <TH>Fecha</TH>
-            <TH>Categoria</TH>
-          </TR>
-        </TableHead>
+          <TableHead>
+            <TR>
+              <TH>Concepto</TH>
+              <TH>Monto</TH>
+              <TH>Fecha</TH>
+              <TH>Categoria</TH>
+            </TR>
+          </TableHead>
 
 
 
-        <TableBody>
-          {transactions.map((x, i) => 
-            <TR key={i} bg={x.id_type_transaction === 1 ? 'green' : 'red' }>
-              <TD>{x.concept}</TD>
-              <TD>{x.amount}</TD>
-              <TD>{x.date}</TD>
-              <TD>{x.category_id}</TD>
-            </TR>)}
-        </TableBody>
+          <TableBody>
+            {transactions.map((x) => 
+              <>
+                <ReadOnlyRow key={x.id} transaction={x} />
+                <EditableRow key={x.id} transaction={x} />
+              </>
+            )}
+          </TableBody>
 
-      </StyledTable>
+        </StyledTable>
+      </form>
     </TableContainer>
   );
 };

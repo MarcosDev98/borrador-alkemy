@@ -1,6 +1,7 @@
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as Container } from './Container';
+export { default as EditableRow } from './EditableRow';
 export { default as Home } from './Home';
 export { default as Input } from './Input';
 export { default as List } from './List';
@@ -9,3 +10,4 @@ export { default as Select } from './Select';
 export { default as SignIn } from './SignIn';
 export { default as SignUp } from './SignUp';
 export { default as Table } from './Table';
+export { default as ReadOnlyRow } from './ReadOnlyRow';
