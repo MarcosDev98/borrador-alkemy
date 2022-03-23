@@ -2,6 +2,7 @@ import React from 'react';
 import { TableContainer, StyledTable, TableBody, TableHead, TR, TH, TD } from './styles.js';
 
 
+// eslint-disable-next-line no-unused-vars
 const Table = ({ transactions }) => {
 
 
@@ -25,8 +26,11 @@ const Table = ({ transactions }) => {
 
         <TableBody>
           {transactions.map((x, i) => 
-            <TR key={i}>
-              <TD bg={x.id_type_transaction === 1 ? 'green' : 'red' } key={x.id}>{x.concept} {x.amount} {x.date} {x.user_id}</TD>
+            <TR key={i} bg={x.id_type_transaction === 1 ? 'green' : 'red' }>
+              <TD>{x.concept}</TD>
+              <TD>{x.amount}</TD>
+              <TD>{x.date}</TD>
+              <TD>{x.category_id}</TD>
             </TR>)}
         </TableBody>
 
@@ -36,3 +40,6 @@ const Table = ({ transactions }) => {
 };
 
 export default Table;
+
+
+

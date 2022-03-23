@@ -6,8 +6,8 @@ export const COLORS = {
   input_border: 'rgba(34, 34, 34, 0.15)',
   input_outline: 'rgba(0, 132, 255 , 0.733)',
   list_balance: '#64b6f5',
-  list_expenses: 'rgba(255,0,0, 0.7)',
-  list_incomes: 'rgba(0,255,0, 0.7);',
+  table_expenses: '#F58282',
+  table_incomes: '#7CF062',
   login_bg: '#4070f4',
 };
 
