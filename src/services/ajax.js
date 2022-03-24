@@ -6,6 +6,29 @@
 // 4 (completo)
 
 
+function ajaxUpdateTransaction (transaction, token ) {
+
+  return new Promise(function(resolve, reject) {
+    const http = new XMLHttpRequest();
+
+    http.onreadystatechange = () => {
+      if (http.readyState === 4 && http.status === 200) {
+        resolve(JSON.stringify(http.responseText));
+      }
+    };
+
+    http.onerror = (error) => reject(error);
+
+    http.open('PUT', 'http://localhost:5005/api/transactions/update', true);
+    http.setRequestHeader('Content-type', 'application/json');
+    http.setRequestHeader('Authorization', `Bearer ${token}`);
+    http.send(JSON.stringify(transaction));
+
+
+  });
+}
+
+
 function ajaxCreateTransaction (new_transaction, token) {
 
   
@@ -27,8 +50,6 @@ function ajaxCreateTransaction (new_transaction, token) {
     http.send(JSON.stringify(new_transaction));
 
   });
-
-  
 }
 
 function ajaxGetTransactions () {
@@ -129,4 +150,4 @@ function ajaxCreateUser (new_user) {
 }
 
 
-export  { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes, ajaxLogin, ajaxCreateUser };
+export  { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes, ajaxLogin, ajaxCreateUser, ajaxUpdateTransaction };
