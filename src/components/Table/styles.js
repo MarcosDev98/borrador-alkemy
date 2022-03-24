@@ -31,7 +31,7 @@ export const TR = styled.tr`
 `;
 
 export const TH = styled.th`
-  text-align: left;
+  text-align: center;
   font-weight: 600;
   padding: 6px 12px;
   background-color: #494949;
@@ -40,8 +40,10 @@ export const TH = styled.th`
 `;
 
 export const TD = styled.td.attrs()`
-  width: 100%;
-  
+  width: 25%;
   padding: 6px 12px;
 `;
 
+export const ConceptTH = styled(TH)`
+  text-align: left;
+`;
