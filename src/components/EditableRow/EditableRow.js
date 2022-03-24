@@ -2,7 +2,9 @@ import React from 'react';
 
 import { TR, TD } from '../Table/styles';
 
-const EditableRow = ({ transaction }) => {
+const EditableRow = ({ transaction, editFormData, handleEditFormChange, handleCancelClick }) => {
+
+
   return (
     <TR 
       key={transaction.id} 
@@ -13,39 +15,43 @@ const EditableRow = ({ transaction }) => {
           type='text' 
           required 
           placeholder='Ingrese el concepto...' 
-          name='concept' 
-        >{transaction.concept}
-        </input>
+          name='concept'
+          onChange={handleEditFormChange}
+          value={editFormData.concept}
+        />
       </TD>
       <TD>
         <input 
           type='text' 
           required 
           placeholder='Ingrese el Monto...' 
-          name='amount' 
-        >{transaction.amount}
-        </input>
+          name='amount'
+          onChange={handleEditFormChange}
+          value={editFormData.amount}
+        />
       </TD>
       <TD>
         <input 
           type='text' 
           required 
           placeholder='Ingrese la fecha...' 
-          name='date' 
-        >{transaction.date}
-        </input>
+          name='date'
+          onChange={handleEditFormChange}
+          value={editFormData.date}
+        />
       </TD>
       <TD>
         <input 
           type='text' 
           required 
           placeholder='Ingrese la categoria...' 
-          name='category_id' 
-        >{transaction.category_id}
-        </input>
+          name='category_id'
+          onChange={handleEditFormChange}
+          value={editFormData.category_id}
+        />
       </TD>
-      <i className="uil uil-edit"></i>
-      <i className="uil uil-trash-alt"></i>
+      <button type='submit' >Save</button>
+      <button type='button' onClick={handleCancelClick} >Cancel</button>
     </TR>
   );
 };
