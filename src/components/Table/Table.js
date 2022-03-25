@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { ReadOnlyRow, EditableRow } from '../';
 // eslint-disable-next-line no-unused-vars
 import { ConceptTH, TableContainer, StyledTable, TableBody, TableHead, TR, TH, TD } from './styles.js';
 
-import { ajaxUpdateTransaction } from '../../services/ajax';
+import { ajaxUpdateTransaction, ajaxDeleteTransaction, ajaxGetTransactions } from '../../services/ajax';
 // import useForm from '../../hooks/useForm';
 
 // eslint-disable-next-line no-unused-vars
-const Table = ({ transactions }) => {
+const Table = () => {
 
+  // LAS TRANSACCIONES LAS DEBERIA TRAER ACA!!
+  // ES DONDE REALMENTE SE VAN A UTILIZAR.
+
+  const [transactions, setTransactions] = useState([]);
   const loggedUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
   const [editRow, setEditRow] = useState(null);
   const [editFormData, setEditFormData] = useState({
@@ -19,6 +23,22 @@ const Table = ({ transactions }) => {
     date: '',
     category_id: ''
   });
+  
+
+
+  useEffect(() => {
+    getTransactions();
+  },[]);
+
+  const getTransactions = () => {
+    ajaxGetTransactions()
+      .then((data) => {
+        setTransactions(data);
+      })
+      .catch((error) => {
+        console.error('get_transactions_error', error);
+      });
+  };
 
   const handleEditFormChange = (e) => {
     e.preventDefault();
@@ -47,15 +67,38 @@ const Table = ({ transactions }) => {
     };
 
     console.log('token?', loggedUser.token);
+    console.log('editedTransaction?', editedTransaction);
+
 
     ajaxUpdateTransaction(editedTransaction, loggedUser.token)
       .then(() => {
         console.log('transaction_updated');
+        setEditRow(null);
+        
+        getTransactions();
 
       })
       .catch((error) => console.error('update_transaction_error', error));
 
 
+  };
+
+
+  const handleDelete = async (event, id) => {
+    event.preventDefault();
+
+    console.log('id?', id);
+    try {
+      ajaxDeleteTransaction(id, loggedUser.token)
+        .then(() => {
+          console.log('transaction_deleted');
+          getTransactions();
+        })
+        .catch((error) => console.error('delete_transaction_error', error));
+    } catch (error) {
+      console.error(error);
+    }
+    
   };
 
   const handleCancelClick = () => {
@@ -107,7 +150,12 @@ const Table = ({ transactions }) => {
                     handleCancelClick={handleCancelClick}
                   />
                 ) : (
-                  <ReadOnlyRow key={x.id} transaction={x} handleEdit={handleEdit} />
+                  <ReadOnlyRow 
+                    key={x.id} 
+                    transaction={x} 
+                    handleEdit={handleEdit} 
+                    handleDelete={handleDelete}
+                  />
                 )}
                 
               </>
