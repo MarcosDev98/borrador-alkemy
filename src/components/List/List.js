@@ -26,7 +26,7 @@ const List = ({ transactions }) => {
   };
 
   return (
-    <Table transactions={transactions}>
+    <Table>
 
     </Table>
   );
