@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, List, Input, Select, Button } from '../';
+import { Card, Input, Select, Button, Table } from '../';
 import useForm from '../../hooks/useForm';
 import { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes } from '../../services/ajax';
 
@@ -85,7 +85,9 @@ const Home = () => {
     <>
       {user ? <h1>Hola {user.firstname}</h1> : navigate('/login') }
       <Card>
-        <List transactions={transactions} />
+        <Table>
+
+        </Table>
       </Card>
       <Card>
         <div style={{ padding: 20 }}>
