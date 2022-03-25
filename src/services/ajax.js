@@ -6,6 +6,32 @@
 // 4 (completo)
 
 
+function ajaxDeleteTransaction (idTransaction, token){
+
+  const id = { id: idTransaction };
+
+  return new Promise(function(resolve, reject) {
+
+    const http = new XMLHttpRequest();
+
+    http.onreadystatechange = () => {
+      if (http.readyState === 4 && http.status === 200) {
+        resolve(JSON.stringify(http.responseText));
+      }
+    };
+
+    http.onerror = (error) => reject(error);
+
+    http.open('DELETE', 'http://localhost:5005/api/transactions/delete', true);
+    http.setRequestHeader('Content-type', 'application/json');
+    http.setRequestHeader('Authorization', `Bearer ${token}`);
+    http.send(JSON.stringify(id));
+
+  });
+
+}
+
+
 function ajaxUpdateTransaction (transaction, token ) {
 
   return new Promise(function(resolve, reject) {
@@ -150,4 +176,12 @@ function ajaxCreateUser (new_user) {
 }
 
 
-export  { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes, ajaxLogin, ajaxCreateUser, ajaxUpdateTransaction };
+export  { 
+  ajaxCreateTransaction, 
+  ajaxGetTransactions, 
+  ajaxGetTypes, 
+  ajaxLogin, 
+  ajaxCreateUser, 
+  ajaxUpdateTransaction,
+  ajaxDeleteTransaction
+};
