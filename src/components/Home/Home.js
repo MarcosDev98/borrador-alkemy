@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Input, Select, Button, Table } from '../';
+import { Card, Input, Select, Button, Table, Notification } from '../';
 import useForm from '../../hooks/useForm';
 import { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes } from '../../services/ajax';
 
@@ -101,6 +101,7 @@ const Home = () => {
           </form>
         </div>
       </Card>
+      <Notification></Notification>
     </>
   );
 };
