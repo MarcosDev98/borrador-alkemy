@@ -6,9 +6,24 @@ import { BodyComponent, Toast, ToastContent, CheckIcon, Message, Title, Text, Cl
 // eslint-disable-next-line no-unused-vars
 const Notification = ({ mode, message, onClose }) => {
 
+  const showHideNotification = () => {
+    const toast = document.getElementById('toast');
+
+    let classes = toast.className.split(' ');
+
+    setTimeout(() => {
+      console.log('classList', toast.classList());
+      console.log('classes', classes);
+    }, 3000);
+
+
+  };
+
+  showHideNotification();
+
   return (
     // <BodyComponent>
-    <Toast>
+    <Toast id='toast'>
       <ToastContent>
         <CheckIcon className='uil uil-check'></CheckIcon>
         <Message>

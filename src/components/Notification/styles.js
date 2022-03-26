@@ -18,6 +18,11 @@ export const Toast = styled.div`
   top: 25px;
   right: 35px;
   border-left: 6px solid #09f;
+  transform: ${props => props.active === 'true'
+    ? 'translateX(calc(100% + 30px));'
+    : 'translateX(0%);'
+};
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 `;
 
 export const ToastContent = styled.div`
@@ -71,4 +76,3 @@ export const CheckIcon = styled.i`
   font-size: 27px;
   border-radius: 50%;
 `;
-
