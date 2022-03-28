@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Input, Select, Button } from './'; 
+import { Card, Input, Select, Button } from '../'; 
 import { ajaxCreateTransaction, ajaxGetTransactions, ajaxGetTypes } from '../../services/ajax';
 
 import useForm from '../../hooks/useForm';

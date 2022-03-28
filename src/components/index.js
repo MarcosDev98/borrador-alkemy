@@ -12,3 +12,4 @@ export { default as SignUp } from './SignUp';
 export { default as Table } from './Table';
 export { default as ReadOnlyRow } from './ReadOnlyRow';
 export { default as Notification } from './Notification';
+export { default as FormTransaction } from './FormTransaction';
