@@ -78,7 +78,7 @@ function ajaxCreateTransaction (new_transaction, token) {
   });
 }
 
-function ajaxGetTransactions () {
+function ajaxGetTransactions (token) {
 
   return new Promise(function(resolve, reject) {
 
@@ -96,6 +96,7 @@ function ajaxGetTransactions () {
 
     http.open('GET', 'http://localhost:5005/api/transactions/', true);
     http.setRequestHeader('Content-type', 'application/json');
+    http.setRequestHeader('Authorization', `Bearer ${token}`);
     http.send();
 
   });
