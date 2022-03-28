@@ -14,7 +14,7 @@ const Table = () => {
   // ES DONDE REALMENTE SE VAN A UTILIZAR.
 
   const [transactions, setTransactions] = useState([]);
-  const loggedUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+  const [user, setUser] = useState(null);
   const [editRow, setEditRow] = useState(null);
   const [editFormData, setEditFormData] = useState({
     id: '',
@@ -25,13 +25,28 @@ const Table = () => {
   });
   
 
+  useEffect(() => {
+
+    getTransactions();
+
+  }, [user]);
+
 
   useEffect(() => {
-    getTransactions();
+
+    const loggedUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+    if (loggedUser !== null) {
+      const user = JSON.parse(loggedUser);
+      setUser(user);
+      console.log('?', user);
+    }
+
+
+    
   },[]);
 
   const getTransactions = () => {
-    ajaxGetTransactions()
+    ajaxGetTransactions(user.token)
       .then((data) => {
         setTransactions(data);
       })
@@ -66,11 +81,11 @@ const Table = () => {
       category_id: editFormData.category_id,
     };
 
-    console.log('token?', loggedUser.token);
+    console.log('token?', user.token);
     console.log('editedTransaction?', editedTransaction);
 
 
-    ajaxUpdateTransaction(editedTransaction, loggedUser.token)
+    ajaxUpdateTransaction(editedTransaction, user.token)
       .then(() => {
         console.log('transaction_updated');
         setEditRow(null);
@@ -84,12 +99,17 @@ const Table = () => {
   };
 
 
-  const handleDelete = async (event, id) => {
+  const handleDelete = async (event, transaction) => {
     event.preventDefault();
 
-    console.log('id?', id);
+    const message = '¿Desea eliminar el registro ' + ' ' + transaction.concept + ' ' + transaction.amount + ' ' + transaction.date + '?';
+
+    if (!confirm(message)){
+      return;
+    }
+
     try {
-      ajaxDeleteTransaction(id, loggedUser.token)
+      ajaxDeleteTransaction(transaction.id, user.token)
         .then(() => {
           console.log('transaction_deleted');
           getTransactions();
