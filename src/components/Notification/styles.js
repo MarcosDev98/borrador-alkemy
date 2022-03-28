@@ -6,7 +6,7 @@ export const BodyComponent = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #f2f2f2;
-  
+  overflow: hidden;
 `;
 
 export const Toast = styled.div`
@@ -17,18 +17,17 @@ export const Toast = styled.div`
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   top: 25px;
   right: 35px;
-  border-left: 6px solid #09f;
-  transform: ${props => props.active === 'true'
-    ? 'translateX(calc(100% + 30px));'
-    : 'translateX(0%);'
-};
+  border-left: ${props => props.mode === 'success' ? '6px solid green' : '6px solid red' };
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  overflow: hidden;
+  transform: translateX(0%);
+
+  
 `;
 
 export const ToastContent = styled.div`
   display: flex;
   align-items: center;
-  /* justi */
 `;
 
 export const Message = styled.div`
@@ -71,7 +70,7 @@ export const CheckIcon = styled.i`
   justify-content: center;
   height: 35px;
   width: 35px;
-  background-color: #09f;
+  background-color: ${props => props.mode === 'success' ? 'green' : 'red' };
   color: #fff;
   font-size: 27px;
   border-radius: 50%;
