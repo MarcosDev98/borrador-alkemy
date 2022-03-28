@@ -7,16 +7,16 @@ import { BodyComponent, Toast, ToastContent, CheckIcon, Message, Title, Text, Cl
 // eslint-disable-next-line no-unused-vars
 const Notification = ({ mode, title, message, onClose }) => {
 
+  const toast = document.getElementById('toast');
   
   const hideNotification = () => {
-    const toast = document.getElementById('toast');
 
-    toast.style.transform = 'translateX(calc(100% + 35px))';
+    if (toast !== null) {
+
+      toast.style.transform = 'translateX(calc(100% + 35px))';
+    }
     
   };
-
-  
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,10 +24,8 @@ const Notification = ({ mode, title, message, onClose }) => {
     }, 3000);
   }, []);
 
-  // showHideNotification();
 
   return (
-    // <BodyComponent>
     <Toast id='toast' mode={mode}>
       <ToastContent>
         <CheckIcon mode={mode} className='uil uil-check' />
@@ -36,10 +34,8 @@ const Notification = ({ mode, title, message, onClose }) => {
           <Text>{message}</Text>
         </Message>
       </ToastContent>
-      {/** Creo que deberia usar 1 solo Icono y pasarle el className por las props.  */}
       <CloseIcon onClick={hideNotification} className='uil uil-times' />
     </Toast>
-    // </BodyComponent>
   );
 };
 

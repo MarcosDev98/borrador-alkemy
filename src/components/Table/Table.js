@@ -26,24 +26,20 @@ const Table = () => {
   
 
   useEffect(() => {
+    const loggedUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+    if (loggedUser !== null) {
 
-    getTransactions();
+      setUser(loggedUser);
+    }
 
-  }, [user]);
+  },[]);
 
 
   useEffect(() => {
-
-    const loggedUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
-    if (loggedUser !== null) {
-      const user = JSON.parse(loggedUser);
-      setUser(user);
-      console.log('?', user);
+    if (user) {
+      getTransactions();
     }
-
-
-    
-  },[]);
+  }, [user]);
 
   const getTransactions = () => {
     ajaxGetTransactions(user.token)
@@ -80,9 +76,6 @@ const Table = () => {
       date: editFormData.date,
       category_id: editFormData.category_id,
     };
-
-    console.log('token?', user.token);
-    console.log('editedTransaction?', editedTransaction);
 
 
     ajaxUpdateTransaction(editedTransaction, user.token)
@@ -148,38 +141,37 @@ const Table = () => {
 
           <TableHead>
             <TR>
-              <ConceptTH>Concepto</ConceptTH>
-              <TH>Monto</TH>
-              <TH>Fecha</TH>
-              <TH>Categoria</TH>
-              <TH>Acciones</TH>
+              <ConceptTH >Concepto</ConceptTH>
+              <TH >Monto</TH>
+              <TH >Fecha</TH>
+              <TH >Categoria</TH>
+              <TH >Acciones</TH>
             </TR>
           </TableHead>
 
 
 
           <TableBody>
-            {transactions.map((x) => 
-              <>
-                {editRow === x.id ? (
-                  <EditableRow
-                    key={x.id}
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    transaction={x}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ReadOnlyRow 
-                    key={x.id} 
-                    transaction={x} 
-                    handleEdit={handleEdit} 
-                    handleDelete={handleDelete}
-                  />
-                )}
+            {transactions.map((x) => {
+              return editRow === x.id ? (
+                <EditableRow
+                  key={x.id}
+                  editFormData={editFormData}
+                  handleEditFormChange={handleEditFormChange}
+                  transaction={x}
+                  handleCancelClick={handleCancelClick}
+                />
+              ) : (
+                <ReadOnlyRow 
+                  key={x.id} 
+                  transaction={x} 
+                  handleEdit={handleEdit} 
+                  handleDelete={handleDelete}
+                />
+              );
                 
-              </>
-            )}
+              
+            })}
           </TableBody>
 
         </StyledTable>

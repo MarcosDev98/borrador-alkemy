@@ -1,44 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Table, Notification } from '../';
+import { Card, Table, FormTransaction } from '../';
 
 
 
 const Home = () => {
   
-
+  
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   let loggedUser = window.sessionStorage.getItem('loggedUser');
   
 
+  const checkLogin = () => {
+
+    if (loggedUser === null) {
+      navigate('/login');
+    } else {
+      setUser(JSON.parse(loggedUser));
+    }
+
+  };
+
 
   useEffect(() => {
     loggedUser = window.sessionStorage.getItem('loggedUser');
 
-    if (loggedUser !== null) {
-      const user = JSON.parse(loggedUser);
-      setUser(user);
-      console.log('?', user);
-    }
+    checkLogin();
 
   }, []);
 
   return (
     <>
-      {console.log('user', user)}
-      {loggedUser === null ?  navigate('/login') : <h1>Hola {user.firstname}, bienvenido.</h1>}
       <Card>
         <Table>
-
         </Table>
       </Card>
-      
-      <Notification 
-        mode='error'
-        title='Error'
-        message='No se pudo guardar los cambios'  
-      />
+      <FormTransaction>
+        
+      </FormTransaction>
     </>
   );
 };
