@@ -7,8 +7,6 @@ import { EditIcon, DeleteIcon, IconsTD, CategoryTD, ConceptTD, AmountTD, DateTD 
 
 
 
-
-
 const ReadOnlyRow = ({ transaction, handleEdit, handleDelete }) => {
   return (
     <TR 
@@ -26,7 +24,7 @@ const ReadOnlyRow = ({ transaction, handleEdit, handleDelete }) => {
         />
         <DeleteIcon 
           className="uil uil-trash-alt" 
-          onClick={(event) => handleDelete(event, transaction.id)} />
+          onClick={(event) => handleDelete(event, transaction)} />
       </IconsTD>
     </TR>
   );
