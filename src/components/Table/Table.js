@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
-import { ReadOnlyRow, EditableRow } from '../';
+import { ReadOnlyRow, EditableRow, FormTransaction } from '../';
 // eslint-disable-next-line no-unused-vars
 import { ConceptTH, TableContainer, StyledTable, TableBody, TableHead, TR, TH, TD } from './styles.js';
 
@@ -135,48 +135,51 @@ const Table = () => {
   };
 
   return(
-    <TableContainer>
-      <form onSubmit={handleEditFormSubmit}>
-        <StyledTable>
+    <>
+      <TableContainer>
+        <form onSubmit={handleEditFormSubmit}>
+          <StyledTable>
 
-          <TableHead>
-            <TR>
-              <ConceptTH >Concepto</ConceptTH>
-              <TH >Monto</TH>
-              <TH >Fecha</TH>
-              <TH >Categoria</TH>
-              <TH >Acciones</TH>
-            </TR>
-          </TableHead>
+            <TableHead>
+              <TR>
+                <ConceptTH >Concepto</ConceptTH>
+                <TH >Monto</TH>
+                <TH >Fecha</TH>
+                <TH >Categoria</TH>
+                <TH >Acciones</TH>
+              </TR>
+            </TableHead>
 
 
 
-          <TableBody>
-            {transactions.map((x) => {
-              return editRow === x.id ? (
-                <EditableRow
-                  key={x.id}
-                  editFormData={editFormData}
-                  handleEditFormChange={handleEditFormChange}
-                  transaction={x}
-                  handleCancelClick={handleCancelClick}
-                />
-              ) : (
-                <ReadOnlyRow 
-                  key={x.id} 
-                  transaction={x} 
-                  handleEdit={handleEdit} 
-                  handleDelete={handleDelete}
-                />
-              );
+            <TableBody>
+              {transactions.map((x) => {
+                return editRow === x.id ? (
+                  <EditableRow
+                    key={x.id}
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange}
+                    transaction={x}
+                    handleCancelClick={handleCancelClick}
+                  />
+                ) : (
+                  <ReadOnlyRow 
+                    key={x.id} 
+                    transaction={x} 
+                    handleEdit={handleEdit} 
+                    handleDelete={handleDelete}
+                  />
+                );
                 
               
-            })}
-          </TableBody>
+              })}
+            </TableBody>
 
-        </StyledTable>
-      </form>
-    </TableContainer>
+          </StyledTable>
+        </form>
+      </TableContainer>
+      <FormTransaction getTransactions={getTransactions} />
+    </>
   );
 };
 
