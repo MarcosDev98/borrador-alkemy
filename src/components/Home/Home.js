@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Table, FormTransaction } from '../';
+import { Card, Table } from '../';
 
 
 
@@ -34,12 +34,8 @@ const Home = () => {
   return (
     <>
       <Card>
-        <Table>
-        </Table>
+        <Table />
       </Card>
-      <FormTransaction>
-        
-      </FormTransaction>
     </>
   );
 };
