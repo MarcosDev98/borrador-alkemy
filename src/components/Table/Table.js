@@ -10,8 +10,6 @@ import { ajaxUpdateTransaction, ajaxDeleteTransaction, ajaxGetTransactions } fro
 // eslint-disable-next-line no-unused-vars
 const Table = () => {
 
-  // LAS TRANSACCIONES LAS DEBERIA TRAER ACA!!
-  // ES DONDE REALMENTE SE VAN A UTILIZAR.
 
   const [transactions, setTransactions] = useState([]);
   const [user, setUser] = useState(null);
