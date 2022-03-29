@@ -45,7 +45,14 @@ const Login = () => {
     e.preventDefault();
 
     ajaxCreateUser(signUpForm)
-      .then()
+      .then((data) => {
+        
+        if (data.status === 'OK') {
+          showLoginForm();
+        }
+        
+
+      })
       .catch((error) => console.error('signup_error', error));
 
     resetSignUp();
@@ -118,6 +125,16 @@ const Login = () => {
 
     const  registrationForm = document.getElementById('registration-form');
     registrationForm.style.display = 'block';
+
+  };
+
+  const showLoginForm = () => {
+
+    const loginForm = document.getElementById('login-form');
+    loginForm.style.display = 'block';
+
+    const  registrationForm = document.getElementById('registration-form');
+    registrationForm.style.display = 'none';
 
   };
 
